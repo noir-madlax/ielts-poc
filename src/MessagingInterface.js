@@ -19,6 +19,7 @@ const MessagingInterface = () => {
         { sender: 'Brooke', content: "How's your project going?" },
     ]);
     const [inputMessage, setInputMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef(null);
     const navigate = useNavigate();
 
@@ -33,19 +34,28 @@ const MessagingInterface = () => {
     const sendMessage = async () => {
         if (inputMessage.trim() === '') return;
 
+        setIsLoading(true);
+
         // Add user message to the chat
         const userMessage = { sender: 'Lucas', content: inputMessage };
         setMessages(prevMessages => [...prevMessages, userMessage]);
         setInputMessage('');
 
         try {
-            // Call API to get response
-            const response = await fetch('YOUR_API_ENDPOINT', {
+            const response = await fetch('https://api.coze.com/open_api/v2/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': 'Bearer pat_0sBTcMWl53dCreIPScxs3pWq3tJPz3O5hD7UglO4xuyboeVSts7Yx8UoHpQChEDM' // Replace with your actual API key
                 },
-                body: JSON.stringify({ message: inputMessage }),
+                body: JSON.stringify({
+                    query: inputMessage,
+                    bot_id: "7407375601826840592",
+                    user: "admin_123",
+                    stream: false,
+                    auto_save_history:true,
+                    // Add any other required parameters for the Coze API
+                }),
             });
 
             if (!response.ok) {
@@ -54,14 +64,15 @@ const MessagingInterface = () => {
 
             const data = await response.json();
 
-            // Add API response to the chat
-            const apiMessage = { sender: 'Brooke', content: data.message };
+            // Assuming the API returns a 'response' field in the data
+            const apiMessage = { sender: 'Brooke', content: data.messages.find(msg => msg.type === "answer").content || "I'm not sure how to respond to that." };
             setMessages(prevMessages => [...prevMessages, apiMessage]);
         } catch (error) {
             console.error('Error:', error);
-            // Handle error (e.g., show an error message to the user)
             const errorMessage = { sender: 'Brooke', content: "Sorry, I couldn't process your request. Please try again." };
             setMessages(prevMessages => [...prevMessages, errorMessage]);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -92,11 +103,18 @@ const MessagingInterface = () => {
                         type="text"
                         value={inputMessage}
                         onChange={(e) => setInputMessage(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+                        onKeyPress={(e) => e.key === 'Enter' && !isLoading && sendMessage()}
                         placeholder="Type a message..."
                         className="bg-transparent flex-1 outline-none text-base"
+                        disabled={isLoading}
                     />
-                    <button onClick={sendMessage} className="text-blue-500 font-bold ml-2">Send</button>
+                    <button
+                        onClick={sendMessage}
+                        className={`text-blue-500 font-bold ml-2 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        disabled={isLoading}
+                    >
+                        {isLoading ? 'Sending...' : 'Send'}
+                    </button>
                 </div>
             </div>
         </div>
