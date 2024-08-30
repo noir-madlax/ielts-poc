@@ -7,6 +7,11 @@ import TopicDetailPage from "./pages/main/TopicDetailPage";
 import FullTestPage from "./pages/main/FullTestPage";
 import WelcomePage from "./pages/onboarding/WelcomePage";
 import StudyReasonPage from "./pages/onboarding/StudyReasonPage";
+import TargetScorePage from "./pages/onboarding/TargetScorePage";
+import EnglishLevelPage from "./pages/onboarding/EnglishLevelPage";
+import AITutorSelection from "./pages/onboarding/AITutorSelection";
+import LoadingPlan from "./pages/onboarding/LoadingPlan";
+import SubscriptionPlan from "./pages/onboarding/SubscriptionPlan";
 
 const App = () => {
     return (
@@ -22,6 +27,11 @@ const App = () => {
                 <Route path="/onboarding">
                     <Route path="welcome" element={<WelcomePage />} />
                     <Route path="study-reason" element={<StudyReasonPage />} />
+                    <Route path="target-score" element={<TargetScorePage />} />
+                    <Route path="english-level" element={<EnglishLevelPage />} />
+                    <Route path="ai-tutor-selection" element={<AITutorSelection />} />
+                    <Route path="loading-plan" element={<LoadingPlan />} />
+                    <Route path="subscription-plan" element={<SubscriptionPlan />} />
                     {/* Add more onboarding routes here */}
                 </Route>
             </Routes>
