@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # 设置 Node.js 版本
+          node-version: '22'  # 设置 Node.js 版本
 
       - name: Install Dependencies
         run: npm ci
