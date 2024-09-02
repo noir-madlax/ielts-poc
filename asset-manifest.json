@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/ielts-poc/static/css/main.44a7d334.css",
+    "main.js": "/ielts-poc/static/js/main.72630cf1.js",
+    "static/js/453.2a82e7ac.chunk.js": "/ielts-poc/static/js/453.2a82e7ac.chunk.js",
+    "static/media/img.png": "/ielts-poc/static/media/img.a6ec38b7134fd8cd1663.png",
+    "static/media/sophia.png": "/ielts-poc/static/media/sophia.a6ec38b7134fd8cd1663.png",
+    "index.html": "/ielts-poc/index.html",
+    "main.44a7d334.css.map": "/ielts-poc/static/css/main.44a7d334.css.map",
+    "main.72630cf1.js.map": "/ielts-poc/static/js/main.72630cf1.js.map",
+    "453.2a82e7ac.chunk.js.map": "/ielts-poc/static/js/453.2a82e7ac.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.44a7d334.css",
+    "static/js/main.72630cf1.js"
+  ]
+}
