@@ -79,7 +79,7 @@ const StudyReasonPage = () => {
             >
                 <button
                     onClick={() => navigate('/onboarding/target-score')} // Update this to the next onboarding page
-                    className={`w-full py-4 rounded-full text-xl font-semibold ${
+                    className={`w-full py-4 rounded-lg text-xl font-semibold ${
                         selectedReason ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-500'
                     } transition duration-300`}
                     disabled={!selectedReason}

@@ -1,10 +1,10 @@
 import React from 'react';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import HomePage from './HomePage';
-import EnglishLearningTopics from './pages/main/EnglishLearningTopics';
+import EnglishLearningTopics from './pages/topics/EnglishLearningTopics';
 import MessagingInterface from "./MessagingInterface";
-import TopicDetailPage from "./pages/main/TopicDetailPage";
-import FullTestPage from "./pages/main/FullTestPage";
+import TopicDetailPage from "./pages/topics/TopicDetailPage";
+import FullTestPage from "./pages/topics/FullTestPage";
 import WelcomePage from "./pages/onboarding/WelcomePage";
 import StudyReasonPage from "./pages/onboarding/StudyReasonPage";
 import TargetScorePage from "./pages/onboarding/TargetScorePage";
@@ -13,8 +13,8 @@ import AITutorSelection from "./pages/onboarding/AITutorSelection";
 import LoadingPlan from "./pages/onboarding/LoadingPlan";
 import SubscriptionPlan from "./pages/onboarding/SubscriptionPlan";
 import MainPage from "./pages/main/MainPage";
-import StudyProgressPage from "./pages/main/StudyProgressPage";
-import ExamReportPage from "./pages/main/ExamReportPage";
+import StudyProgressPage from "./pages/progress/StudyProgressPage";
+import ExamReportPage from "./pages/progress/ExamReportPage";
 import LanguageSelectionPage from "./pages/onboarding/LanguageSelectionPage";
 
 const App = () => {
