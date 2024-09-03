@@ -14,6 +14,7 @@ import LoadingPlan from "./pages/onboarding/LoadingPlan";
 import SubscriptionPlan from "./pages/onboarding/SubscriptionPlan";
 import MainPage from "./pages/main/MainPage";
 import StudyProgressPage from "./pages/main/StudyProgressPage";
+import ExamReportPage from "./pages/main/ExamReportPage";
 
 const App = () => {
     return (
@@ -39,6 +40,7 @@ const App = () => {
 
                 <Route path="/main" element={<MainPage />} />
                 <Route path="/progress" element={<StudyProgressPage />} />
+                <Route path="/exam-report" element={<ExamReportPage />} />
             </Routes>
         </Router>
     );

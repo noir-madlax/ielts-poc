@@ -69,13 +69,18 @@ const StudyProgressPage = () => {
 
                 <motion.div
                     className="mb-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
+                    initial={{opacity: 0, y: 20}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{duration: 0.5, delay: 0.2}}
                 >
                     <div className="flex justify-between items-center mb-4">
                         <h3 className="text-lg font-semibold">当前表现</h3>
-                        <a href="#" className="text-blue-500">提升建议 &gt;</a>
+                        <button
+                            className="text-blue-500"
+                            onClick={() => navigate('/exam-report')}
+                        >
+                            提升建议 &gt;
+                        </button>
                     </div>
                     <div className="bg-gray-200 rounded-lg p-4">
                         <h4 className="text-md font-semibold mb-3">模考成绩（共计6次模考均分）</h4>
@@ -85,9 +90,9 @@ const StudyProgressPage = () => {
                                     <motion.div
                                         key={index}
                                         className="flex items-center"
-                                        initial={{ opacity: 0, x: -20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: 0.1 * index }}
+                                        initial={{opacity: 0, x: -20}}
+                                        animate={{opacity: 1, x: 0}}
+                                        transition={{delay: 0.1 * index}}
                                     >
                                         <span className="text-2xl mr-2">{exam.icon}</span>
                                         <div>
@@ -103,9 +108,9 @@ const StudyProgressPage = () => {
 
                 <motion.div
                     className="mb-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
+                    initial={{opacity: 0, y: 20}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{duration: 0.5, delay: 0.4}}
                 >
                     <h3 className="text-lg font-semibold mb-4">考试记录</h3>
                     <div className="bg-gray-200 rounded-lg p-4">
