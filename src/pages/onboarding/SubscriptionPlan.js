@@ -8,7 +8,7 @@ const SubscriptionPlan = () => {
 
     const handleSubscribe = () => {
         // 这里可以添加订阅逻辑
-        navigate('/loading-plan');
+        navigate('/onboarding/loading-plan');
     };
 
     return (

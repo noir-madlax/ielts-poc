@@ -62,7 +62,7 @@ const AITutorSelection = () => {
         if (tutor.isFree) {
             navigate('/onboarding/loading-plan');
         } else {
-            navigate('/onboarding/subscription-plan');
+            navigate('/onboarding/language-selection');
         }
     };
 

@@ -15,6 +15,7 @@ import SubscriptionPlan from "./pages/onboarding/SubscriptionPlan";
 import MainPage from "./pages/main/MainPage";
 import StudyProgressPage from "./pages/main/StudyProgressPage";
 import ExamReportPage from "./pages/main/ExamReportPage";
+import LanguageSelectionPage from "./pages/onboarding/LanguageSelectionPage";
 
 const App = () => {
     return (
@@ -35,6 +36,7 @@ const App = () => {
                     <Route path="ai-tutor-selection" element={<AITutorSelection />} />
                     <Route path="loading-plan" element={<LoadingPlan />} />
                     <Route path="subscription-plan" element={<SubscriptionPlan />} />
+                    <Route path="language-selection" element={<LanguageSelectionPage />} />
                     {/* Add more onboarding routes here */}
                 </Route>
 
