@@ -7,7 +7,7 @@ const LoadingPlan = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            navigate('/main-app');  // 假设主应用页面的路由是 '/main-app'
+            navigate('/main');  // 假设主应用页面的路由是 '/main'
         }, 3000);  // 3秒后自动跳转
 
         return () => clearTimeout(timer);

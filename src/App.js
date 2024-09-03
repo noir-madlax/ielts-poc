@@ -12,6 +12,8 @@ import EnglishLevelPage from "./pages/onboarding/EnglishLevelPage";
 import AITutorSelection from "./pages/onboarding/AITutorSelection";
 import LoadingPlan from "./pages/onboarding/LoadingPlan";
 import SubscriptionPlan from "./pages/onboarding/SubscriptionPlan";
+import MainPage from "./pages/main/MainPage";
+import StudyProgressPage from "./pages/main/StudyProgressPage";
 
 const App = () => {
     return (
@@ -34,6 +36,9 @@ const App = () => {
                     <Route path="subscription-plan" element={<SubscriptionPlan />} />
                     {/* Add more onboarding routes here */}
                 </Route>
+
+                <Route path="/main" element={<MainPage />} />
+                <Route path="/progress" element={<StudyProgressPage />} />
             </Routes>
         </Router>
     );

@@ -1,48 +1,10 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-
-const TopicCard = ({ title, subtitle, icon, progress, total, index }) => {
-    const navigate = useNavigate();
-
-    return (
-        <motion.div
-            className="bg-gray-100 p-4 rounded-lg cursor-pointer hover:shadow-lg transition-shadow"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => navigate(`/topic/${index + 1}`)}
-        >
-            <div className="flex justify-between items-start mb-2">
-                <div>
-                    <h3 className="text-lg font-semibold">{title}</h3>
-                    <p className="text-sm text-gray-600">{subtitle}</p>
-                </div>
-                <motion.span
-                    className="text-2xl"
-                    animate={{ rotate: [0, 10, -10, 0] }}
-                    transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-                >
-                    {icon}
-                </motion.span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                <motion.div
-                    className="bg-blue-600 h-2.5 rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${(progress / total) * 100}%` }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                ></motion.div>
-            </div>
-            <p className="text-right text-xs text-gray-500 mt-1">{progress}/{total}</p>
-        </motion.div>
-    );
-};
+import { useNavigate } from 'react-router-dom';
 
 const EnglishLearningTopics = () => {
     const navigate = useNavigate();
+    const [selectedOption, setSelectedOption] = useState('全部');
 
     const topics = [
         { title: "Staying at home", subtitle: "宅在家里", icon: "🏠", progress: 0, total: 6 },
@@ -57,6 +19,12 @@ const EnglishLearningTopics = () => {
         { title: "Shopping", subtitle: "购物", icon: "🛍️", progress: 0, total: 4 },
     ];
 
+    const options = ['全部', '5-8月真题', '1-4月真题', '9-12月真题'];
+
+    const handleTopicClick = (index) => {
+        navigate(`/topic/${index + 1}`);
+    };
+
     return (
         <motion.div
             className="flex flex-col h-screen bg-white"
@@ -64,7 +32,12 @@ const EnglishLearningTopics = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
         >
-            <div className="p-4 bg-gray-100">
+            <motion.div
+                className="p-4 bg-gray-100"
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+            >
                 <div className="flex justify-center space-x-4 mb-4">
                     <motion.button
                         className="px-4 py-2 rounded-full bg-gray-200 text-gray-700"
@@ -82,67 +55,100 @@ const EnglishLearningTopics = () => {
                     </motion.button>
                 </div>
                 <div className="flex justify-between text-sm">
-                    <motion.span
-                        className="font-bold cursor-pointer"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        全部
-                    </motion.span>
-                    <motion.span
-                        className="cursor-pointer"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        5-8月真题
-                    </motion.span>
-                    <motion.span
-                        className="cursor-pointer"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        1-4月真题
-                    </motion.span>
-                    <motion.span
-                        className="cursor-pointer"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        9-12月真题
-                    </motion.span>
+                    {options.map((option, index) => (
+                        <motion.span
+                            key={option}
+                            className={`cursor-pointer ${selectedOption === option ? 'font-bold' : ''}`}
+                            whileHover={{ scale: 1.1 }}
+                            onClick={() => setSelectedOption(option)}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 + index * 0.1 }}
+                        >
+                            {option}
+                        </motion.span>
+                    ))}
                 </div>
-            </div>
+            </motion.div>
 
             <motion.div
                 className="flex-1 overflow-y-auto p-4 grid grid-cols-2 gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
             >
                 {topics.map((topic, index) => (
-                    <TopicCard key={index} {...topic} index={index} />
+                    <motion.div
+                        key={index}
+                        className="bg-gray-100 p-4 rounded-lg cursor-pointer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 * index }}
+                        onClick={() => handleTopicClick(index)}
+                    >
+                        <div className="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 className="text-lg font-semibold">{topic.title}</h3>
+                                <p className="text-sm text-gray-600">{topic.subtitle}</p>
+                            </div>
+                            <motion.span
+                                className="text-2xl"
+                                animate={{ rotate: [0, 10, -10, 0] }}
+                                transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
+                            >
+                                {topic.icon}
+                            </motion.span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                            <motion.div
+                                className="bg-blue-600 h-2.5 rounded-full"
+                                style={{ width: `${(topic.progress / topic.total) * 100}%` }}
+                                initial={{ width: 0 }}
+                                animate={{ width: `${(topic.progress / topic.total) * 100}%` }}
+                                transition={{ duration: 0.5, delay: 0.5 + 0.1 * index }}
+                            ></motion.div>
+                        </div>
+                        <p className="text-right text-xs text-gray-500 mt-1">{topic.progress}/{topic.total}</p>
+                    </motion.div>
                 ))}
             </motion.div>
 
-            <motion.div
-                className="flex justify-around items-center p-4 bg-white border-t"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+            <motion.nav
+                className="bg-white border-t flex justify-around items-center py-2"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.7 }}
             >
-                {[
-                    { icon: "🎯", label: "目标" },
-                    { icon: "✏️", label: "真题模考" },
-                    { icon: "📅", label: "历史测试" },
-                    { icon: "👤", label: "我的" }
-                ].map((item, index) => (
-                    <motion.button
-                        key={index}
-                        className="flex flex-col items-center"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                    >
-                        <span className="text-2xl">{item.icon}</span>
-                        <span className="text-xs">{item.label}</span>
-                    </motion.button>
-                ))}
-            </motion.div>
+                <button
+                    className="flex flex-col items-center text-gray-400"
+                    onClick={() => navigate('/main')}
+                >
+                    <span className="text-2xl">🎯</span>
+                    <span className="text-xs">目标</span>
+                </button>
+                <button
+                    className="flex flex-col items-center text-blue-500"
+                >
+                    <span className="text-2xl">📝</span>
+                    <span className="text-xs">真题模考</span>
+                </button>
+                <button
+                    className="flex flex-col items-center text-gray-400"
+                    onClick={() => navigate('/progress')}
+                >
+                    <span className="text-2xl">📈</span>
+                    <span className="text-xs">备考进度</span>
+                </button>
+                <button
+                    className="flex flex-col items-center text-gray-300 cursor-not-allowed"
+                    disabled
+                >
+                    <span className="text-2xl">👤</span>
+                    <span className="text-xs">我的</span>
+                </button>
+            </motion.nav>
         </motion.div>
     );
 };
