@@ -6,6 +6,10 @@ import PageLayout from "../layout/PageLayout";
 const MainPage = () => {
     const navigate = useNavigate();
 
+    const handleTestClick = () => {
+        navigate('/exam-process', { state: { fromMain: true } });
+    };
+
     return (
         <PageLayout activeTab="main">
             <motion.div
@@ -43,7 +47,7 @@ const MainPage = () => {
                             <span className="ml-2">Band 7</span>
                         </div>
                         <p className="text-sm mb-4">专业提升雅思口语交流能力</p>
-                        <button className="w-full bg-white text-blue-500 py-2 rounded-lg font-semibold">
+                        <button  onClick={handleTestClick} className="w-full bg-white text-blue-500 py-2 rounded-lg font-semibold">
                             先来一次模底测试吧！
                         </button>
                     </motion.div>
