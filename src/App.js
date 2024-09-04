@@ -17,6 +17,7 @@ import StudyProgressPage from "./pages/progress/StudyProgressPage";
 import ExamReportPage from "./pages/progress/ExamReportPage";
 import LanguageSelectionPage from "./pages/onboarding/LanguageSelectionPage";
 import ExamProcessPage from "./pages/main/ExamProcessPage";
+import InteractiveExamQuestionPage from "./pages/main/InteractiveExamQuestionPage";
 
 const App = () => {
     return (
@@ -45,6 +46,7 @@ const App = () => {
                 <Route path="/progress" element={<StudyProgressPage />} />
                 <Route path="/exam-report" element={<ExamReportPage />} />
                 <Route path="/exam-process" element={<ExamProcessPage />} />
+                <Route path="/exam-question" element={<InteractiveExamQuestionPage />} />
             </Routes>
         </Router>
     );

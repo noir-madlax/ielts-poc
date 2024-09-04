@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,6 +7,7 @@ import backgroundImage from './assets/ai_tutor.png';
 
 const ExamProcessPage = () => {
   const [step, setStep] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const navigate = useNavigate();
 
   const contents = [
@@ -24,18 +25,40 @@ const ExamProcessPage = () => {
     }
   ];
 
+  useEffect(() => {
+    const img = new Image();
+    img.src = backgroundImage;
+    img.onload = () => setImageLoaded(true);
+  }, []);
+
   const handleClick = () => {
     if (step < contents.length - 1) {
       setStep(step + 1);
     } else {
-      navigate('/next-page'); // 替换为实际的下一个页面路由
+      navigate('/exam-question'); // 替换为实际的下一个页面路由
     }
   };
 
   return (
       <div className="h-screen w-full flex flex-col" onClick={handleClick}>
-        <div className="h-1/2 relative overflow-hidden">
-          <img src={backgroundImage} alt="Background" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="h-1/2 relative overflow-hidden bg-gray-200">
+          <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: imageLoaded ? 1 : 0 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0"
+          >
+            <img
+                src={backgroundImage}
+                alt="Background"
+                className="w-full h-full object-cover"
+            />
+          </motion.div>
+          {!imageLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+              </div>
+          )}
         </div>
         <div className="h-1/2 bg-white flex items-center justify-center p-6">
           <AnimatePresence mode="wait">
