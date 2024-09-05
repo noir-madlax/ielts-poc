@@ -6,6 +6,10 @@ import PageLayout from "../layout/PageLayout";
 const StudyProgressPage = () => {
     const navigate = useNavigate();
 
+    const handleTestClick = () => {
+        navigate('/exam-process', { state: { fromMain: true } });
+    };
+
     const progressData = {
         daysLeft: 33,
         progressPercentage: 66,
@@ -65,7 +69,7 @@ const StudyProgressPage = () => {
                             <span className="ml-2">Band 7</span>
                         </div>
                         <p className="text-sm mb-4">{progressData.tip}</p>
-                        <button className="w-full bg-white text-blue-500 py-2 rounded-lg font-semibold">
+                        <button onClick={handleTestClick} className="w-full bg-white text-blue-500 py-2 rounded-lg font-semibold">
                             今天也再来一次真题模拟吧~
                         </button>
                     </motion.div>

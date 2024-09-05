@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 
 // 导入本地图片
 import sophiaImage from './avatar/sophia.png';
-import cherryImage from './avatar/img.png';
-import michaelImage from './avatar/img.png';
-import emilyImage from './avatar/img.png';
-import julieImage from './avatar/img.png';
+import cherryImage from './avatar/cherry.png';
+import michaelImage from './avatar/michael.png';
+import emilyImage from './avatar/emily.png';
+import julieImage from './avatar/julie.png';
 
 const AITutorSelection = () => {
     const navigate = useNavigate();

@@ -2,102 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
+import scoreImage from './assets/score.png';
+
 const ExamReportPage = () => {
     const navigate = useNavigate();
-
-    const scores = {
-        total: 7.0,
-        vocabulary: 6.5,
-        fluency: 7.0,
-        grammar: 7.0,
-        pronunciation: 6.5
-    };
-
-    const renderRadarChart = () => {
-        const size = 300;
-        const center = size / 2;
-        const maxRadius = size * 0.4;
-        const scoreToRadius = (score) => (score / 9) * maxRadius; // Assuming max score is 9
-
-        const points = [
-            { label: '词汇', angle: -Math.PI / 2, score: scores.vocabulary },
-            { label: '流利性和连贯性', angle: 0, score: scores.fluency },
-            { label: '语法多样性', angle: Math.PI / 2, score: scores.grammar },
-            { label: '发音', angle: Math.PI, score: scores.pronunciation },
-        ];
-
-        const pathData = points.map((point, index) => {
-            const radius = scoreToRadius(point.score);
-            const x = center + radius * Math.cos(point.angle);
-            const y = center + radius * Math.sin(point.angle);
-            return (index === 0 ? 'M' : 'L') + `${x},${y}`;
-        }).join(' ') + 'Z';
-
-        return (
-            <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="mx-auto">
-                {/* Background lines */}
-                {points.map((point, index) => (
-                    <line
-                        key={index}
-                        x1={center}
-                        y1={center}
-                        x2={center + maxRadius * Math.cos(point.angle)}
-                        y2={center + maxRadius * Math.sin(point.angle)}
-                        stroke="#E5E7EB"
-                        strokeDasharray="4 4"
-                    />
-                ))}
-                {/* Background circles */}
-                {[0.25, 0.5, 0.75, 1].map((fraction, index) => (
-                    <circle
-                        key={index}
-                        cx={center}
-                        cy={center}
-                        r={maxRadius * fraction}
-                        fill="none"
-                        stroke="#E5E7EB"
-                        strokeDasharray="4 4"
-                    />
-                ))}
-                {/* Data polygon */}
-                <path d={pathData} fill="#3B82F6" fillOpacity="0.5" stroke="#3B82F6" strokeWidth="2" />
-                {/* Labels and Scores */}
-                {points.map((point, index) => {
-                    const labelRadius = maxRadius + 30;
-                    const scoreRadius = scoreToRadius(point.score);
-                    const labelX = center + labelRadius * Math.cos(point.angle);
-                    const labelY = center + labelRadius * Math.sin(point.angle);
-                    const scoreX = center + (scoreRadius + 15) * Math.cos(point.angle);
-                    const scoreY = center + (scoreRadius + 15) * Math.sin(point.angle);
-                    return (
-                        <g key={index}>
-                            <text
-                                x={labelX}
-                                y={labelY}
-                                textAnchor="middle"
-                                dominantBaseline="middle"
-                                fontSize="14"
-                                fill="#4B5563"
-                            >
-                                {point.label}
-                            </text>
-                            <text
-                                x={scoreX}
-                                y={scoreY}
-                                textAnchor="middle"
-                                dominantBaseline="middle"
-                                fontSize="16"
-                                fill="#3B82F6"
-                                fontWeight="bold"
-                            >
-                                {point.score}
-                            </text>
-                        </g>
-                    );
-                })}
-            </svg>
-        );
-    };
 
     return (
         <motion.div
@@ -120,10 +28,13 @@ const ExamReportPage = () => {
                 <p className="text-lg mb-1">给你最专业的雅思口语报告</p>
                 <p className="mb-4">考生 <span className="text-blue-500">PiPi</span></p>
 
-                <div className="bg-white rounded-lg p-6 mb-6 shadow">
-                    <p className="text-center mb-4">总分</p>
-                    <p className="text-5xl text-center text-blue-500 font-bold mb-8">{scores.total}</p>
-                    {renderRadarChart()}
+                <div className="rounded-lg p-6 mb-6">
+                    {/* 替换为透明片图片 */}
+                    <img
+                        src={scoreImage}
+                        alt="Exam Report"
+                        className="w-full h-auto"
+                    />
                 </div>
 
                 <div className="bg-white rounded-lg p-4 shadow">

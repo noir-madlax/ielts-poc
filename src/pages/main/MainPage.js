@@ -3,6 +3,10 @@ import {motion} from 'framer-motion';
 import {useNavigate} from 'react-router-dom';
 import PageLayout from "../layout/PageLayout";
 
+import avatar1 from './assets/avatar1.png';
+import avatar2 from './assets/avatar2.png';
+import avatar3 from './assets/avatar3.png';
+
 const MainPage = () => {
     const navigate = useNavigate();
 
@@ -125,7 +129,19 @@ const MainPage = () => {
                             目标冲刺7+
                         </h3>
                         <div className="space-y-4">
-                            {['雅思口语真题练习', '雅思口语真题模拟考试', '雅思口语真题场景练习'].map((item, index) => (
+                            {[
+                                {title: '雅思口语真题练习', description: '最新考场话题&考试范围预测', avatar: avatar1},
+                                {
+                                    title: '雅思口语真题模拟考试',
+                                    description: '真实模拟考试流程，雅思官方标准评分',
+                                    avatar: avatar2
+                                },
+                                {
+                                    title: '雅思口语真题场景练习',
+                                    description: '真实场景对话练习，提升应对能力',
+                                    avatar: avatar3
+                                }
+                            ].map((item, index) => (
                                 <motion.div
                                     key={index}
                                     className="bg-white rounded-lg p-4 flex items-center"
@@ -133,15 +149,11 @@ const MainPage = () => {
                                     animate={{opacity: 1, x: 0}}
                                     transition={{delay: 0.1 * index}}
                                 >
-                                    <img src={`https://via.placeholder.com/50`} alt="Avatar"
+                                    <img src={item.avatar} alt={`Avatar for ${item.title}`}
                                          className="w-12 h-12 rounded-full mr-4"/>
                                     <div>
-                                        <p className="font-semibold">{item}</p>
-                                        <p className="text-sm text-gray-500">
-                                            {index === 0 ? '最新考场话题&考试范围预测' :
-                                                index === 1 ? '真实模拟考试流程，雅思官方标准评分' :
-                                                    '真实场景对话练习，提升应对能力'}
-                                        </p>
+                                        <p className="font-semibold">{item.title}</p>
+                                        <p className="text-sm text-gray-500">{item.description}</p>
                                     </div>
                                 </motion.div>
                             ))}
