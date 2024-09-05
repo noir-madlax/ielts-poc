@@ -13,11 +13,11 @@ const InteractiveExamQuestionPage = () => {
     };
 
     const handleConfirm = () => {
-        navigate('/next-page'); // 替换为实际的下一个页面路由
+        navigate('/exam-report'); // 替换为实际的下一个页面路由
     };
 
     const handleScoreClick = () => {
-        navigate('/score-details'); // 替换为实际的评分详情页面路由
+        navigate('/detailed-results'); // 替换为实际的评分详情页面路由
     };
 
     return (
