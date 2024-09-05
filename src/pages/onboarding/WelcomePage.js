@@ -30,7 +30,7 @@ const WelcomePage = () => {
                 transition={{ delay: 1, duration: 0.8 }}
             >
                 <button
-                    className="w-full py-3 bg-blue-300 text-blue-900 rounded-full text-xl font-semibold"
+                    className="w-full py-3 bg-blue-300 text-blue-900 rounded-lg text-xl font-semibold"
                     onClick={() => navigate('/onboarding/study-reason')}
                 >
                     开始
